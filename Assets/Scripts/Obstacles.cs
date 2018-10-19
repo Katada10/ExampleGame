@@ -8,7 +8,7 @@ public class Obstacles : MonoBehaviour {
     public GameObject ball;
 
     private float changeSpeedFrequency = 2f, objSpeed = 0.1f;
-    private float increaseDifficultyFrequency = 5f;
+    private float increaseDifficultyFrequency = 4f;
     private bool didCreate;
     private List<Transform> objects;
     private int counter = 0;
@@ -23,11 +23,15 @@ public class Obstacles : MonoBehaviour {
 
     IEnumerator DoCreate()
     {
-        while(true)
+        while(!Game.isGameOver)
         {
             var obj = Create();
             counter++;
-            yield return new WaitForSeconds(changeSpeedFrequency);
+            yield return new WaitForSeconds(increaseDifficultyFrequency);
+        }
+        foreach (var item in objects.ToArray())
+        {
+            objects.Remove(item);
         }
     }
 
@@ -57,7 +61,7 @@ public class Obstacles : MonoBehaviour {
 
         if(seconds % increaseDifficultyFrequency == 0){
             if(increaseDifficultyFrequency > 0.3f)
-                increaseDifficultyFrequency -= 0.2f * Time.deltaTime;
+                increaseDifficultyFrequency -= 1f * Time.deltaTime;
         }
         if(seconds % changeSpeedFrequency == 0)
         {   

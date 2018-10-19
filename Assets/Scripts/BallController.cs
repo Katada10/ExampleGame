@@ -10,6 +10,7 @@ public class BallController : MonoBehaviour {
     private Rigidbody rb;
     private bool isInAir;
 
+
 	void Start () {
         rb = GetComponent<Rigidbody>();
         isInAir = false;
@@ -24,7 +25,19 @@ public class BallController : MonoBehaviour {
     void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.name == "Floor")
-            isInAir = false;       
+            isInAir = false;   
+
+        if(col.gameObject.name.Contains("Obstacle"))
+        {
+            Game.isGameOver = true;
+        }    
+    }
+
+
+    void EndGame()
+    {
+        jumpHeight = 0;
+        speed = 0;
     }
 
 	void FixedUpdate () {
@@ -39,5 +52,10 @@ public class BallController : MonoBehaviour {
 
         var h = Input.GetAxisRaw("Horizontal");
         rb.velocity += Vector3.right * h * speed * Time.deltaTime;
+
+        if(Game.isGameOver)
+        {
+            EndGame();
+        }
 	}
 }

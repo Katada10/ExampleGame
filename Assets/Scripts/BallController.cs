@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallController : MonoBehaviour {
 
 	public float jumpHeight;
+    public float speed;
 
     private Rigidbody rb;
     private bool isInAir;
@@ -16,12 +17,14 @@ public class BallController : MonoBehaviour {
 	
     void OnCollisionExit(Collision col)
     {
-        isInAir = true;
+        if(col.gameObject.name == "Floor")
+            isInAir = true;
     }
 
     void OnCollisionEnter(Collision col)
     {
-        isInAir = false;       
+        if(col.gameObject.name == "Floor")
+            isInAir = false;       
     }
 
 	void FixedUpdate () {
@@ -30,7 +33,11 @@ public class BallController : MonoBehaviour {
             if (Input.GetButtonDown("Jump"))
             {
                 rb.AddForce(0, jumpHeight, 0);
+        
             }
         }
+
+        var h = Input.GetAxisRaw("Horizontal");
+        rb.velocity += Vector3.right * h * speed * Time.deltaTime;
 	}
 }

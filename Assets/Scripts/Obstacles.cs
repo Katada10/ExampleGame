@@ -7,7 +7,8 @@ public class Obstacles : MonoBehaviour {
 	public Transform obstacle;
     public GameObject ball;
 
-    private float frequency = 2f, objSpeed = 0.1f;
+    private float changeSpeedFrequency = 2f, objSpeed = 0.1f;
+    private float increaseDifficultyFrequency = 5f;
     private bool didCreate;
     private List<Transform> objects;
     private int counter = 0;
@@ -26,7 +27,7 @@ public class Obstacles : MonoBehaviour {
         {
             var obj = Create();
             counter++;
-            yield return new WaitForSeconds(frequency);
+            yield return new WaitForSeconds(changeSpeedFrequency);
         }
     }
 
@@ -54,19 +55,23 @@ public class Obstacles : MonoBehaviour {
         }
 
 
-        if(seconds % frequency == 0)
-        {
+        if(seconds % increaseDifficultyFrequency == 0){
+            if(increaseDifficultyFrequency > 0.3f)
+                increaseDifficultyFrequency -= 0.2f * Time.deltaTime;
+        }
+        if(seconds % changeSpeedFrequency == 0)
+        {   
             objSpeed += 0.01f * Time.deltaTime;
         }
     }
     
     Transform Create()
     {
-        int randomZ = Random.Range(20, 30);
+        int randomZ = Random.Range(40, 70);
         float randomX = Random.Range(-1.5f, 1.5f);
 
         Vector3 ballPos = ball.transform.position;
-        Vector3 pos = new Vector3(randomX, ballPos.y, (int)ballPos.z + randomZ);
+        Vector3 pos = new Vector3(randomX, 1, (int)ballPos.z + randomZ);
         didCreate = true;
         var obj = Instantiate(obstacle, pos, Quaternion.identity);
         obj.name = "Obstacle " + counter;

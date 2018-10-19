@@ -12,6 +12,7 @@ public class BallController : MonoBehaviour {
 
 
 	void Start () {
+        Game.isGameOver = false;
         rb = GetComponent<Rigidbody>();
         isInAir = false;
     }

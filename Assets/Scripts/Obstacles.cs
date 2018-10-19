@@ -29,10 +29,6 @@ public class Obstacles : MonoBehaviour {
             counter++;
             yield return new WaitForSeconds(increaseDifficultyFrequency);
         }
-        foreach (var item in objects.ToArray())
-        {
-            objects.Remove(item);
-        }
     }
 
 

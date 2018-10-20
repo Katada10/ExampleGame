@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Game  {
 	public static bool isGameOver = false;
-	public static double score;
+	public static double score = 0;
 }

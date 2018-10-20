@@ -48,7 +48,7 @@ public class Obstacles : MonoBehaviour
     {
         while (!Game.isGameOver)
         {
-            var obj = Create();
+            Create();
             counter++;
             yield return new WaitForSeconds(spawnTimer);
         }
@@ -80,7 +80,7 @@ public class Obstacles : MonoBehaviour
 
         if (started && !Game.isGameOver)
         {
-            double s = Math.Round(Time.time * objSpeed * 5, 1);
+            double s = Math.Round(Time.timeSinceLevelLoad * objSpeed * 5, 1);
             score.text = "Score: " + Convert.ToString(s);
             Game.score = s;
         }

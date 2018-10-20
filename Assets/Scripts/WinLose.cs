@@ -8,8 +8,7 @@ public class WinLose : MonoBehaviour {
 
 	public Button btn1, btn2;
 	public Canvas canvas;	
-
-	// Use this for initialization
+	
 	void Start () {
 		canvas.enabled = false;
 		btn1.GetComponent<Button>().onClick.AddListener(() => {

@@ -16,6 +16,7 @@ public class Obstacles : MonoBehaviour {
 
     void Start()
     {
+        Game.isGameOver = false;
         didCreate = false;
         StartCoroutine("DoCreate");
         objects = new List<Transform>();
@@ -29,6 +30,7 @@ public class Obstacles : MonoBehaviour {
             counter++;
             yield return new WaitForSeconds(increaseDifficultyFrequency);
         }
+
     }
 
 

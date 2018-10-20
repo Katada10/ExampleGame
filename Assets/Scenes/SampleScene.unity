@@ -138,7 +138,7 @@ Transform:
   m_GameObject: {fileID: 44013782}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 11.43}
+  m_LocalScale: {x: 1, y: 11.63, z: 11.43}
   m_Children: []
   m_Father: {fileID: 1897637031}
   m_RootOrder: 0
@@ -412,8 +412,8 @@ Camera:
   m_GameObject: {fileID: 534669902}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -557,7 +557,7 @@ Transform:
   m_GameObject: {fileID: 885812722}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 11.43}
+  m_LocalScale: {x: 1, y: 12.092, z: 11.43}
   m_Children: []
   m_Father: {fileID: 1897637031}
   m_RootOrder: 1
@@ -694,9 +694,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e781ab3239cc77d4cb2b2be52aec7750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btn1: {fileID: 0}
-  btn2: {fileID: 0}
-  canvas: {fileID: 0}
+  btn1: {fileID: 2108592437}
+  btn2: {fileID: 1396340936}
+  canvas: {fileID: 1525648812}
 --- !u!114 &1273027125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,8 +708,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ccc76d0dbc5df34889717136b4fe38f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 0}
-  ball: {fileID: 0}
+  obstacle: {fileID: 4777531012466000, guid: 054adbed7802f464d87bde06666f50d3, type: 2}
+  ball: {fileID: 1878905841}
 --- !u!4 &1273027126
 Transform:
   m_ObjectHideFlags: 0

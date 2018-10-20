@@ -87,7 +87,8 @@ public class Obstacles : MonoBehaviour
 
         if (seconds % increaseDifficultyFrequency == 0)
         {
-            spawnTimer -= 0.1f * Time.deltaTime;
+            if(spawnTimer > 0.3f)
+                spawnTimer -= 0.1f * Time.deltaTime;
         }
         if (seconds % changeSpeedFrequency == 0)
         {

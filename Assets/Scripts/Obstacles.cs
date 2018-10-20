@@ -1,14 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Obstacles : MonoBehaviour {
-	
 	public Transform obstacle;
     public GameObject ball;
+    public Text countDown;
 
     private float changeSpeedFrequency = 2f, objSpeed = 0.1f;
-    private float increaseDifficultyFrequency = 4f;
+    private float increaseDifficultyFrequency = 2f, spawnTimer = 3f;
     private bool didCreate;
     private List<Transform> objects;
     private int counter = 0;
@@ -18,8 +20,25 @@ public class Obstacles : MonoBehaviour {
     {
         Game.isGameOver = false;
         didCreate = false;
-        StartCoroutine("DoCreate");
         objects = new List<Transform>();
+        StartCoroutine("DoStart");
+    }
+
+    IEnumerator DoStart()
+    {
+        for (int i = 0; i <= 3; i++)
+        {
+           countDown.text = Convert.ToString(3 - i);
+
+           if(i == 3)
+           {
+               countDown.text = "GO!";
+           }
+            yield return new WaitForSeconds(1f);
+        }
+       
+       countDown.enabled = false;
+       StartCoroutine("DoCreate");
     }
 
     IEnumerator DoCreate()
@@ -28,7 +47,7 @@ public class Obstacles : MonoBehaviour {
         {
             var obj = Create();
             counter++;
-            yield return new WaitForSeconds(increaseDifficultyFrequency);
+            yield return new WaitForSeconds(spawnTimer);
         }
 
     }
@@ -58,8 +77,8 @@ public class Obstacles : MonoBehaviour {
 
 
         if(seconds % increaseDifficultyFrequency == 0){
-            if(increaseDifficultyFrequency > 0.3f)
-                increaseDifficultyFrequency -= 1f * Time.deltaTime;
+            spawnTimer -= 0.1f * Time.deltaTime;
+            Debug.Log(spawnTimer);
         }
         if(seconds % changeSpeedFrequency == 0)
         {   
@@ -69,8 +88,8 @@ public class Obstacles : MonoBehaviour {
     
     Transform Create()
     {
-        int randomZ = Random.Range(40, 70);
-        float randomX = Random.Range(-1.5f, 1.5f);
+        int randomZ = UnityEngine.Random.Range(40, 70);
+        float randomX = UnityEngine.Random.Range(-1.5f, 1.5f);
 
         Vector3 ballPos = ball.transform.position;
         Vector3 pos = new Vector3(randomX, 1, (int)ballPos.z + randomZ);
